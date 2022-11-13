@@ -93,7 +93,7 @@
         </dependency>
     </dependencies>
 
-    <!-- 插件-->
+    <!-- tomcat7插件-->
     <build>
         <plugins>
             <plugin>
