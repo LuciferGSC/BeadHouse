@@ -92,7 +92,8 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
-<!--    插件-->
+
+    <!-- 插件-->
     <build>
         <plugins>
             <plugin>
