@@ -1,0 +1,37 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: mysql123
+    url: jdbc:mysql://localhost:3306/beadhouse
+  main:
+    banner-mode: off
+  jackson:
+    generator:
+      write-numbers-as-strings: true    #防止long型数据传输到js时损失精度
+  web:
+    resources:
+      static-locations: C:/Users/gsc_p/Pictures/upload/
+mybatis-plus:
+  global-config:
+    db-config:
+      # 逻辑删除字段名
+      logic-delete-field: deleted
+      # 逻辑删除字面值：未删除为0
+      logic-not-delete-value: 0
+      # 逻辑删除字面值：删除为1
+      logic-delete-value: 1
+      id-type: assign_id
+    banner: off
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:cloud/truesun/mapper/xml/*.xml
+
+file:
+#  物理路径
+  staticAccessPath: /image/**
+#  逻辑路径
+  uploadFolder: C:/Users/gsc_p/Pictures/upload/

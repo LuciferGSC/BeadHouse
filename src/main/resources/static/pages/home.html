@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <!-- 选项 1：包含 Popper 的 Bootstrap 集成包 -->
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/home.js"></script>
+
+    <title>主页</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 导航栏与模态框 -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mynav" style="background-color: #e3f2fd;z-index: 999;">
+            <!-- 模态框 -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl" id="gsc-modal">
+                    <div class="modal-content">
+
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">添加信息</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- 模态框内容 -->
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">选择图片</label>
+                                <input class="form-control" type="file" id="formFile" @change="uploadPic"
+                                    ref="pathClear">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">输入名称</span>
+                                <input v-model="uploadHouse.housename" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">输入地区</span>
+                                <input v-model="uploadHouse.areas" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">详细地址</span>
+                                <input v-model="uploadHouse.address" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">收费下限</span>
+                                <input v-model="uploadHouse.min" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">收费上限</span>
+                                <input v-model="uploadHouse.max" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="form-floating">
+                                <textarea v-model="uploadHouse.description" class="form-control"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">描述</label>
+                            </div>
+
+                        </div>
+
+                        <!-- 模态框底部 -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" v-on:click="saveOne">提交</button>
+                            <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal"></button> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航栏 -->
+            <div class=" container-fluid">
+                <a class="navbar-brand" href="../index.html">养老院</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./search.html">查找</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./info.html">个人信息</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=javascrip:; data-bs-toggle="modal" data-bs-target="#myModal">上传</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                联系我们
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">13833123052</a></li>
+                                <li><a class="dropdown-item" href="#">gsc_py@163.com</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">反馈</a></li>
+                            </ul>
+                        </li> -->
+
+                    </ul>
+                    <div class="d-flex" role="search">
+                        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                        <button type="button" class="btn btn-success">
+                            <a href="./login.html" style="text-decoration:none; color: #fff;">登录</a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </nav>
+
+        <div style="margin:20px 0;"></div>
+        <!-- 轮播图 -->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../images/Carousel1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../images/Carousel2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../images/Carousel3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 详细信息 -->
+    <div class="container" id="myinfo">
+        <div class="card" style="width: 18rem;" v-for="(item, index) in pages.data.records">
+            <img v-bind:src="item.url" class="card-img-top" alt="..." id="mypic">
+            <div class="card-body">
+                <div class="mybdy">
+                    <div class="col-2 text-truncate" id="housename">
+                        {{item.housename}}
+                    </div>
+                    <div class="col-2 text-truncate" id="address">
+                        {{item.address}}
+                    </div>
+
+                    <p class="card-text">收费区间：{{item.min}}-{{item.max}}</p>
+                    <a href="./houseInfo.html" class="btn btn-primary" v-on:click="transmitSession(index)">详细信息</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 分页按钮 -->
+        <div class="container" id="mybutton">
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" v-on:click="firstPage">前往首页</button>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" v-on:click="prePage"
+                    v-bind:disabled="preDisabled">上一页</button>
+            </div>
+
+            <div class="btn-group btn-group-lg" role="group" aria-label="..." id="page-num">
+                第 {{pages.data.current}}/{{pages.data.pages}} 页
+            </div>
+
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" v-on:click="nextPage"
+                    v-bind:disabled="nextDisabled">下一页</button>
+            </div>
+
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" v-on:click="endPage">前往尾页</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

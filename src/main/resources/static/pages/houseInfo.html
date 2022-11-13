@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/homeinfo.css">
+    <!-- 选项 1：包含 Popper 的 Bootstrap 集成包 -->
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/homeinfo.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- 导航栏与模态框 -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mynav" style="background-color: #e3f2fd;z-index: 999;">
+            <!-- 模态框 -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl" id="gsc-modal">
+                    <div class="modal-content">
+
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">添加信息</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- 模态框内容 -->
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">选择图片</label>
+                                <input class="form-control" type="file" id="formFile" @change="uploadPic"
+                                    ref="pathClear">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">输入名称</span>
+                                <input v-model="uploadHouse.housename" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">输入地区</span>
+                                <input v-model="uploadHouse.areas" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">详细地址</span>
+                                <input v-model="uploadHouse.address" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">收费下限</span>
+                                <input v-model="uploadHouse.min" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">收费上限</span>
+                                <input v-model="uploadHouse.max" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="form-floating">
+                                <textarea v-model="uploadHouse.description" class="form-control"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">描述</label>
+                            </div>
+
+                        </div>
+
+                        <!-- 模态框底部 -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" v-on:click="saveOne">提交</button>
+                            <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal"></button> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航栏 -->
+            <div class=" container-fluid">
+                <a class="navbar-brand" href="../index.html">养老院</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./search.html">查找</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./info.html">个人信息</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=javascrip:; data-bs-toggle="modal" data-bs-target="#myModal">上传</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                联系我们
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">13833123052</a></li>
+                                <li><a class="dropdown-item" href="#">gsc_py@163.com</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">反馈</a></li>
+                            </ul>
+                        </li> -->
+
+                    </ul>
+                    <div class="d-flex" role="search">
+                        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                        <button type="button" class="btn btn-success">
+                            <a href="./login.html" style="text-decoration:none; color: #fff;">登录</a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+
+    <!-- 详细信息 -->
+    <div class="container" id="houseInfo">
+
+
+
+        <!-- 信息展示 -->
+        <div class="detail">
+            <div class="pic"><img v-bind:src="info.data.url" alt=".." class="img-thumbnail"></div>
+
+            <div class="mb-3" :style="{display: isshow}">
+                <p class="h4">是否更换图片</p>
+                <input class="form-control" type="file" id="formFile" @change="uploadPic">
+            </div>
+
+            <div>
+                <p class="h4">名称</p>
+                <input v-bind:disabled="inputDis" v-cloak v-model="info.data.housename" type="text" class="form-control"
+                    :style="{'background-color':istransparent , border:isborder}">
+                <hr>
+            </div>
+            <div>
+                <p class="h4">地区</p>
+                <input v-bind:disabled="inputDis" v-cloak v-model="info.data.areas" type="text" class="form-control"
+                    :style="{'background-color':istransparent , border:isborder}">
+                <hr>
+            </div>
+            <div>
+                <p class="h5">地址</p>
+                <input v-bind:disabled="inputDis" v-cloak v-model="info.data.address" type="text" class="form-control"
+                    :style="{'background-color':istransparent , border:isborder}">
+                <hr>
+            </div>
+
+            <div>
+                <p class="h5">收费下限</p>
+                <input v-bind:disabled="inputDis" v-cloak v-model="info.data.min" type="text" class="form-control"
+                    :style="{'background-color':istransparent , border:isborder}">
+                <hr>
+            </div>
+            <div>
+                <p class="h5">收费上限</p>
+                <input v-bind:disabled="inputDis" v-cloak v-model="info.data.max" type="text" class="form-control"
+                    :style="{'background-color':istransparent , border:isborder}">
+                <hr>
+            </div>
+            <div>
+                <p class="h5">描述</p>
+                <div class="mb-3">
+                    <textarea v-bind:disabled="inputDis" v-cloak v-model="info.data.description" class="form-control"
+                        id="exampleFormControlTextarea1" rows="2"
+                        :style="{'background-color':istransparent , border:isborder}"></textarea>
+                </div>
+                <hr>
+            </div>
+
+
+            <div class="buttonGrup">
+                <button type="button" class="btn btn-primary" v-on:click="updateInfo">修改</button>
+                <button type="button" class="btn btn-primary" v-on:click="send">保存</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">是否删除？</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                此操作是不可逆的，点击确认删除后将无法恢复
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary"  v-on:click="deleted">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">删除</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

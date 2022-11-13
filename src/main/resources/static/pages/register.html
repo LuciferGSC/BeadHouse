@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+
+    <title>注册</title>
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/register.css">
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/register.js"></script>
+</head>
+
+<body>
+    <div class="login-box">
+        <div class="warnning">
+            <div v-cloak v-if="warn==='00010'">{{title[0]}}</div>
+            <div v-cloak v-else-if="warn==='00020'">{{title[1]}}</div>
+            <div v-cloak v-else-if="warn==='00030'">{{title[2]}}</div>
+            <div v-cloak v-else-if="warn==='00040'">{{title[3]}}</div>
+            <div v-cloak v-else-if="warn==='10010'">{{title[4]}}</div>
+            <div v-cloak v-else-if="warn==='10011'">{{title[5]}}</div>
+            <div v-else></div>
+        </div>
+        <h1>注册</h1>
+        <div class="input-box">
+
+            <div class="input-text">
+                <span class='iconfont icon-mine'></span>
+                <input id="username" type="text" placeholder="手机号"  v-model:value="user.telephone">
+            </div>
+            
+            <div class="input-text">
+                <span class='iconfont icon-lock'></span>
+                <input id="userpwd" type="password" placeholder="密码"  v-model:value="user.userpwd">
+            </div>
+
+            <div class="input-text">
+                <span class='iconfont icon-lock'></span>
+                <input id="confirmp" type="password" placeholder="确认密码"  v-model:value="confirmpwd">
+            </div>
+            
+            <div class="input-btn" v-on:click="regist">
+                注册
+            </div>
+
+            <div class="sign-up">
+                <ul>
+                    <li><a href="login.html">登录</a></li>
+                    <li>|</li>
+                    <li><a href="repassword.html">忘记密码</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

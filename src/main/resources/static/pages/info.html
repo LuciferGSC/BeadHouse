@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/info.css">
+
+    <!-- 选项 1：包含 Popper 的 Bootstrap 集成包 -->
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/info.js"></script>
+    <title>个人信息</title>
+</head>
+
+<body>
+
+    <div class="container">
+    
+        <!-- 导航栏与模态框 -->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mynav" style="background-color: #e3f2fd;z-index: 999;">
+            <!-- 模态框 -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl" id="gsc-modal">
+                    <div class="modal-content">
+
+                        <!-- 模态框头部 -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">添加信息</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- 模态框内容 -->
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">选择图片</label>
+                                <input class="form-control" type="file" id="formFile" @change="uploadPic"
+                                    ref="pathClear">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">输入名称</span>
+                                <input v-model="uploadHouse.housename" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">输入地区</span>
+                                <input v-model="uploadHouse.areas" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">详细地址</span>
+                                <input v-model="uploadHouse.address" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">收费下限</span>
+                                <input v-model="uploadHouse.min" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">收费上限</span>
+                                <input v-model="uploadHouse.max" type="text" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="form-floating">
+                                <textarea v-model="uploadHouse.description" class="form-control"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">描述</label>
+                            </div>
+
+                        </div>
+
+                        <!-- 模态框底部 -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" v-on:click="saveOne">提交</button>
+                            <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal"></button> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航栏 -->
+            <div class=" container-fluid">
+                <a class="navbar-brand" href="../index.html">养老院</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./search.html">查找</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./info.html">个人信息</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=javascrip:; data-bs-toggle="modal" data-bs-target="#myModal">上传</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                联系我们
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">13833123052</a></li>
+                                <li><a class="dropdown-item" href="#">gsc_py@163.com</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">反馈</a></li>
+                            </ul>
+                        </li> -->
+
+                    </ul>
+                    <div class="d-flex" role="search">
+                        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                        <button type="button" class="btn btn-success">
+                            <a href="./login.html" style="text-decoration:none; color: #fff;">登录</a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </nav>
+    
+    </div>
+<div class="container">
+    <div class="gsc-info">
+        <div  class="myinfo">
+            <h3>个人信息</h3>
+        </div>
+        <div id="info">
+            <div class="mb-3">
+                <label for="uname" class="form-label">昵称</label>
+                <input v-model:value="user.data.username" v-bind:disabled="disabled" class="form-control"
+                    type="text" placeholder="Default input" aria-label="default input example">
+                <div id="emailHelp" class="form-text">取一个好听的名字吧</div>
+            </div>
+            <div class="mb-3">
+                <label for="uid" class="form-label">用户ID</label>
+                <input v-model:value="user.data.id" type="email" class="form-control" id="uid"
+                    aria-describedby="emailHelp" disabled>
+                <div id="emailHelp" class="form-text">您的唯一标识用来修改，可以用来修改您的密码</div>
+            </div>
+            <div class="mb-3">
+                <label for="utel" class="form-label">用户ID</label>
+                <input v-model:value="user.data.telephone" type="email" class="form-control" id="utel"
+                    aria-describedby="emailHelp" disabled>
+                <div id="emailHelp" class="form-text">您的电话号码</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">邮箱</label>
+                <input v-model:value="user.data.emaile" type="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" v-bind:disabled="disabled">
+                <div id="emailHelp" class="form-text"></div>
+            </div>
+            <div class="mb-3">
+                <label for="usex" class="form-label">性别</label>
+                <input v-model:value="user.data.sex" v-bind:disabled="disabled" class="form-control" type="text"
+                    placeholder="Default input" aria-label="default input example" id="usex">
+                <div id="emailHelp" class="form-text">“男” 或者 “女”</div>
+            </div>
+
+
+            <button class="btn btn-primary" v-on:click="change">修改</button>
+            <button class="btn btn-primary" v-on:click="update">保存</button>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
